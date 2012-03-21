@@ -1,0 +1,235 @@
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="style.css" />
+<title>PloneDevelopmentLayouts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+<h1 id="toc_1">Plone Development Layouts</h1>
+
+<p>
+Setting up a Plone development environment is quite a complicated business.
+For example:
+</p>
+<ul>
+<li>
+You need to have the right Python version,
+</li>
+<li>
+with the right level of isolation from the system Python 
+</li>
+<li>
+as well as from other locally compiled Pythons. 
+</li>
+<li>
+You need suitably compiled <code>libxml2</code>, <code>libjpeg</code>, <code>zlib</code>, etc.
+</li>
+</ul>
+
+<p>
+There have been various attempts to address this, none yet revealed as the
+Right Way. Érico Andrei <a href="http://lists.plone.org/pipermail/plone-product-developers/2012-March/011310.html">nails</a> it:
+</p>
+<blockquote>
+Last night while talking to Clayton and Liz about the whole
+<a href="ZopeSkel.html">ZopeSkel</a>/Paster/Templer/Crushinator situation it became clear that the
+story for new developers is a complete mess.
+</blockquote>
+<blockquote>
+There are good ideas, great developers and high expectations. There
+isn't a working solution. Some people jumped on Templer, most people
+still need to pin <a href="ZopeSkel.html">ZopeSkel</a> &lt;2.99 (damn local commands).
+</blockquote>
+<blockquote>
+This is bad, and having a new shiny thing that "eases" Plone
+development just made the situation even worse -- as long as someone
+must use it and then &lt;zopeskel create&gt; &amp; &lt;paster addcontent&gt;.
+</blockquote>
+<blockquote>
+Time to kill most of the available options, focus on *<strong>just one</strong>* and
+have a compelling story to tell to newcomers.
+</blockquote>
+
+
+<h2 id="toc_1.1">Add-on template</h2>
+
+<dl>
+<dt>Author</dt>
+<dd><a href="https://github.com/miohtama">Mikko Ohtamaa</a></dd>
+<dt>Source</dt>
+<dd><a href="https://github.com/miohtama/sane_plone_addon_template">https://github.com/miohtama/sane_plone_addon_template</a></dd>
+</dl>
+
+<p>
+Based on Plone 4.1, <code>five.grok</code>.  It is not based on any template engine:
+just clone and go.  Tries to be as minimal as possible. 
+</p>
+
+<p>
+Martin Aspeli
+<a href="http://lists.plone.org/pipermail/plone-product-developers/2012-March/011388.html">asks</a>: "Did you have a look at the 'plone-customizations' egg
+provided by <a href="https://github.com/plone/plone-devstart">plone-devstart</a>?
+Wondering if it serves a somewhat similar purpose."
+</p>
+
+<h2 id="toc_1.2">Plone Devstart</h2>
+
+<dl>
+<dt>Author</dt>
+<dd><a href="https://github.com/optilude">Martin Aspeli</a></dd>
+<dt>Source</dt>
+<dd><a href="https://github.com/plone/plone-devstart">https://github.com/plone/plone-devstart</a></dd>
+</dl>
+
+<p>
+"<code>plone-devstart.py</code> is a script to quickly and safely bootstrap a useful
+Plone development environment."
+</p>
+
+<p>
+At its simplest, this is similar to Alex's <strong>Hello Plone</strong>, except automated
+and dynamic.  It tries to check whether a sane environment exists. 
+</p>
+
+<p>
+More importantly, it can be updated as best practices evolve. 
+</p>
+
+<p>
+*<strong>Pros</strong>*
+</p>
+<ul>
+<li>
+Tries to encode best practices as running code. 
+</li>
+<li>
+Supports various Plone versions.
+</li>
+<li>
+Tries to accommodate your local setup (uses existing Python if suitable).
+</li>
+<li>
+Requires only the standard Python library.
+</li>
+</ul>
+
+<p>
+*<strong>Cons</strong>*
+</p>
+<ul>
+<li>
+Checks using heuristics. A Python that looks OK may still surprise you.
+</li>
+<li>
+Reinvents <code>autoconf</code>/<code>automake</code> (but those are still complicated and not
+  cross-platform).
+</li>
+</ul>
+
+<h2 id="toc_1.3">Hello Plone</h2>
+
+<dl>
+<dt>Author</dt>
+<dd><a href="http://blog.aclark.net">Alex Clark</a></dd>
+<dt>Source</dt>
+<dd><a href="http://blog.aclark.net/2011/08/20/hello-plone/">http://blog.aclark.net/2011/08/20/hello-plone/</a></dd>
+<dd><a href="https://github.com/aclark4life/hello_plone">https://github.com/aclark4life/hello_plone</a></dd>
+</dl>
+
+<p>
+Rather than a tool, this is a post describing and explaining a minimal set
+of steps needed to go from nothing to a Plone instance with a new add-on.
+</p>
+
+<p>
+*<strong>Pros</strong>*
+</p>
+<ul>
+<li>
+Minimal and informative.
+</li>
+</ul>
+
+<p>
+*<strong>Cons</strong>*
+</p>
+<ul>
+<li>
+Minimal.
+</li>
+</ul>
+
+<h2 id="toc_1.4">ZopeSkel</h2>
+
+<dl>
+<dt>Author</dt>
+<dd>Cris Ewing</dd>
+<dt>Source</dt>
+<dd><a href="http://pypi.python.org/pypi/ZopeSkel">http://pypi.python.org/pypi/ZopeSkel</a></dd>
+</dl>
+
+<p>
+Used to be based on <a href="http://pythonpaste.org/script/">paster</a>, now moving to
+<a href="http://pypi.python.org/pypi/templer.core">templer</a>. From a quick look it 
+appears that the latest (3.0a1) isn't useful yet, so install with version 
+specified as <code>&lt;= 2.99</code>.
+</p>
+
+
+<p>
+*<strong>Cons</strong>*
+</p>
+<ul>
+<li>
+It has accumulated quite a few crufty templates that are incomplete or
+  haven't been updated to current development practices. 
+</li>
+<li>
+It can be hard to figure out what exactly a template does or which is the
+  right one to use for some purpose.
+</li>
+<li>
+There are a lot of obsolete tutorials floating around. At the least there
+  should be a ZopeSkel site which lists obsolete tutorials: a 
+  "<a href="https://github.com/jean/ZopeSkel/wiki/Outdated-tutorials">don't read these</a>"
+  list (quick wiki page). 
+</li>
+<li>
+Unfinished:
+</li>
+</ul>
+<blockquote>
+Our problem with <a href="ZopeSkel.html">ZopeSkel</a> goes beyond keeping docs in sync. We never
+finished <a href="ZopeSkel.html">ZopeSkel</a> &lt; 2.99 -- as it has a zopeskel script that did not
+support local commands -- and we decided to go with a new idea (templer)
+with <a href="ZopeSkel.html">ZopeSkel</a> 3.0 and that is in a zombie state (again, no local
+commands), and then we saw this whole <a href="ZopeSkel.html">ZopeSkel</a> situation deserved a new
+approach (Crushinator) and that is also stalled somewhere.
+</blockquote>
+<blockquote>
+<a href="http://lists.plone.org/pipermail/plone-product-developers/2012-March/011319.html">http://lists.plone.org/pipermail/plone-product-developers/2012-March/011319.html</a>
+</blockquote>
+
+<h2 id="toc_1.5">pip install</h2>
+
+<p>
+Support: "pip install -r 4.2.x.txt Plone" ASAP. Failures with this 
+process become "general Python failures" not "Plone specific failures".
+</p>
+
+<p>
+See <a href="http://lists.plone.org/pipermail/plone-product-developers/2012-March/011335.html">http://lists.plone.org/pipermail/plone-product-developers/2012-March/011335.html</a>
+</p>
+
+<p>
+*<strong>Cons</strong>*
+</p>
+<ul>
+<li>
+Doesn't actually exist.
+</li>
+</ul>
+
+</body>
+</html>
