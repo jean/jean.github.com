@@ -1,0 +1,7 @@
+# Vim
+.sw?
+*.sw?
+
+# ctags
+tags
+
